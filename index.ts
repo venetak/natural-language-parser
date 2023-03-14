@@ -1,15 +1,15 @@
-/// <reference path="./grammar/dictionary.d.ts" />
-import NounPhraseRule from './grammar/rules/NounPhraseRule'
-import Noun from './grammar/rules/Noun'
-import Preposition from './grammar/rules/PrepositionRule'
-import SentenceRule from './grammar/rules/SentenceRule'
-import VerbPhraseRule from './grammar/rules/VerbPhraseRule'
-import Verb from './grammar/rules/Verb'
-import tokenize from './tokenizer'
-import Determiner from './grammar/rules/Determiner'
-import Subject from './grammar/rules/Subject'
-import Rule from './grammar/rules/Rule'
-import { Token } from './grammar/token'
+/// <reference path="./types/types.d.ts" />
+import NounPhraseRule from './src/grammar/rules/NounPhraseRule'
+import Noun from './src/grammar/rules/Noun'
+import Preposition from './src/grammar/rules/PrepositionRule'
+import SentenceRule from './src/grammar/rules/SentenceRule'
+import VerbPhraseRule from './src/grammar/rules/VerbPhraseRule'
+import Verb from './src/grammar/rules/Verb'
+import tokenize from './src/tokenizer'
+import Determiner from './src/grammar/rules/Determiner'
+import Subject from './src/grammar/rules/Subject'
+import Rule from './src/grammar/rules/Rule'
+import { Token } from './src/token'
 
 class Stack {
     tokens: Token[]

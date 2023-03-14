@@ -1,0 +1,91 @@
+const grammar = {
+  "<sentence>": [
+    "<simple_sentence>",
+    "<compound_sentence>"
+  ],
+  "<simple_sentence>": [
+    "<subject> <predicate>."
+  ],
+  "<compound_sentence>": [
+    "<simple_sentence> <conjunction> <simple_sentence>."
+  ],
+  "<subject>": [
+    "<noun_phrase>",
+    "<pronoun>"
+  ],
+  "<predicate>": [
+    "<verb_phrase>",
+    "<verb_phrase> <adverb>"
+  ],
+  "<noun_phrase>": [
+    "<proper_noun>",
+    "<determiner> <common_noun>",
+    "<determiner> <adjective> <common_noun>"
+  ],
+  "<verb_phrase>": [
+    "<intransitive_verb>",
+    "<transitive_verb> <noun_phrase>",
+    "<transitive_verb> <noun_phrase> <preposition_phrase>"
+  ],
+  "<preposition_phrase>": [
+    "<preposition> <noun_phrase>"
+  ],
+  "<conjunction>": [
+    "and",
+    "or",
+    "but"
+  ],
+  "<determiner>": [
+    "the",
+    "a",
+    "an"
+  ],
+  "<adjective>": [
+    "red",
+    "happy",
+    "tall",
+    "beautiful"
+  ],
+  "<proper_noun>": [
+    "John",
+    "Mary",
+    "New York",
+    "Google"
+  ],
+  "<common_noun>": [
+    "cat",
+    "book",
+    "man",
+    "city"
+  ],
+  "<intransitive_verb>": [
+    "sleeps",
+    "runs",
+    "eats"
+  ],
+  "<transitive_verb>": [
+    "sees",
+    "reads",
+    "likes",
+    "eats"
+  ],
+  "<preposition>": [
+    "in",
+    "on",
+    "at",
+    "with",
+    "from"
+  ],
+  "<pronoun>": [
+    "he",
+    "she",
+    "it",
+    "they"
+  ],
+  "<adverb>": [
+    "quickly",
+    "slowly",
+    "happily",
+    "well"
+  ]
+};
