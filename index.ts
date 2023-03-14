@@ -1,4 +1,3 @@
-/// <reference path="./types/types.d.ts" />
 import NounPhraseRule from './src/grammar/rules/NounPhraseRule'
 import Noun from './src/grammar/rules/Noun'
 import Preposition from './src/grammar/rules/PrepositionRule'
