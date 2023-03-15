@@ -2,7 +2,6 @@ import { Token } from '../../token'
 import NounPhraseRule from './NounPhraseRule'
 import Rule from './Rule'
 import VerbPhraseRule from './VerbPhraseRule'
-import Subject from './Subject'
 
 class SentenceRule extends Rule {
     verbPhrase: Token

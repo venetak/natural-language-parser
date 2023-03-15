@@ -3,8 +3,6 @@ import { prepositions } from '../dictionary/dictionary'
 import Rule from './Rule'
 import { Token } from '../../token'
 
-const prepositionsLength = prepositions.length
-
 class Preposition extends Rule {
     value: Token
 

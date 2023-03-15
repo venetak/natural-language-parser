@@ -1,39 +1,22 @@
-import NounPhraseRule from './src/grammar/rules/NounPhraseRule'
-import Noun from './src/grammar/rules/Noun'
-import Preposition from './src/grammar/rules/PrepositionRule'
 import SentenceRule from './src/grammar/rules/SentenceRule'
-import VerbPhraseRule from './src/grammar/rules/VerbPhraseRule'
+import Noun from './src/grammar/rules/Noun'
+import NounPhraseRule from './src/grammar/rules/NounPhraseRule'
 import Verb from './src/grammar/rules/Verb'
-import tokenize from './src/tokenizer'
+import VerbPhraseRule from './src/grammar/rules/VerbPhraseRule'
+import Preposition from './src/grammar/rules/PrepositionRule'
 import Determiner from './src/grammar/rules/Determiner'
-import Subject from './src/grammar/rules/Subject'
-import Rule from './src/grammar/rules/Rule'
+
 import { Token } from './src/token'
+import { Stack } from './src/stack'
 
-class Stack {
-    tokens: Token[]
-    items: Token[]
-
-    constructor (tokens: Token[]) {
-        this.tokens = tokens
-        this.items = []
-    }
-
-    shift (word) {
-        this.tokens.shift()
-        return this.items.unshift(word)
-    }
-
-    reduce (start, end, replacement: Token) {
-        this.items.splice(start, end, replacement)
-    }
-}
+import tokenize from './src/tokenizer'
+import Rule from './src/grammar/rules/Rule'
 
 class Parser {
     phrase: string
     stack: object[]
 
-    hasProduction (tokens: Token[], stack) {
+    hasProduction (tokens: Token[], stack: Stack) {
         if (Determiner.isDeterminer(tokens[0])) return new Determiner(<string>tokens[0])
 
         if (Noun.isNoun(tokens[0])) return new Noun(<string>tokens[0])
@@ -44,7 +27,6 @@ class Parser {
 
         if (Preposition.isPreposition(tokens[0])) return new Preposition(tokens[0])
 
-        // if (Subject.isSubject(tokens[0])) return new Subject(<NounPhraseRule>tokens[0])
         if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
     }
 
@@ -60,6 +42,7 @@ class Parser {
 
             stack.reduce(beginning, i, production)
             this.checkForProduction(stack)
+            // TODO: stack.length changes; update the condition to avoid redundant iterations!
         } while (i !== stackLength)
     }
 
@@ -68,13 +51,12 @@ class Parser {
         const stack = new Stack(tokens)
 
         this.shiftReduce(stack)
+        return (<Rule>stack.items[0]).toJSON()
     }
 
     shiftReduce (stack: Stack) {
-        if (!stack.tokens.length) {
-            console.log((<Rule>(stack.items[0])).toJSON())
-            return
-        }
+        // TODO: error handling
+        if (!stack.tokens.length) return
 
         stack.shift(stack.tokens[0])
         this.checkForProduction(stack)
@@ -82,4 +64,7 @@ class Parser {
     }
 }
 
-new Parser().parse('the dog saw a man in the park')
+export default Parser
+
+// new Parser().parse('the dog saw a man in the park')
+// new Parser().parse('the man plays dog in the movie')
