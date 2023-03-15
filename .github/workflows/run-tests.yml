@@ -1,0 +1,19 @@
+name: Run Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Run Tests
+      uses: browser-actions/setup-chrome@v0.0.0
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18.14.2'
+    - run: npm run test
