@@ -1,5 +1,5 @@
 # Natural Language Parser in Typescript
-[![Run Tests](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml/badge.svg)](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml)
+[![Run Tests](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml)
 
 The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) from a sentence in English. You ca use the generated abstract syntax tree to analyze the semantics of the sentence and used them as input for a natural language interpreter.
 
