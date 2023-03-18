@@ -22,23 +22,41 @@ class Parser {
     stack: object[]
 
     /**
+     * Check if a token is a terminal symbol - Noun, Verb, Determiner or Preposition.
+     * Technically Verb and Noun can become Verb and Noun Phrases but an elementary symbol such as
+     * a verb "read" must be constituted with a Verb before it could become a VerbPhrase.
+     * @param token The token that will be checked
+     */
+    isTerminalSymbol(token: Token): Token | undefined {
+        if (Determiner.isDeterminer(token)) return new Determiner(<string>token)
+        if (Noun.isNoun(token)) return new Noun(<string>token)
+        if (Verb.isVerb(token)) return new Verb(<string>token)
+        if (Preposition.isPreposition(token)) return new Preposition(token)
+    }
+
+    /**
+     * Checks if an array of tokens can form a terminal symbol such as VerbPhrase.
+     * @param tokens The tokens that will be checked.
+     * @param stack The stack containing the tokenized text and the production items.
+     */
+    isNonTerminalSymbol(tokens: Token[], stack: Stack):Token | undefined {
+        if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
+        if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
+        if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
+    }
+
+    /**
      * Individually checks if an array of tokens form a production rule that they can be
      * replaced with.
      * @param tokens A tokenized language phrase.
      * @param stack The stack that holds the parsed and not yet parsed tokens. 
      */
-    hasProduction (tokens: Token[], stack: Stack) {
-        if (Determiner.isDeterminer(tokens[0])) return new Determiner(<string>tokens[0])
-
-        if (Noun.isNoun(tokens[0])) return new Noun(<string>tokens[0])
-        if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
-
-        if (Verb.isVerb(tokens[0])) return new Verb(<string>tokens[0])
-        if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
-
-        if (Preposition.isPreposition(tokens[0])) return new Preposition(tokens[0])
-
-        if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
+    hasProduction (tokens: Token[], stack: Stack): Token | undefined {
+        let production
+        const firstToken = tokens[0]
+        if (tokens.length === 1 && typeof firstToken === 'string') production = this.isTerminalSymbol(firstToken)
+        if (!production) production = this.isNonTerminalSymbol(tokens, stack)
+        return production
     }
 
     /**
