@@ -2,7 +2,10 @@ import { determiners } from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Rule from './Rule'
 
-
+/**
+ * @class Determiner
+ * These are the production rules for determiner.
+ */
 class Determiner extends Rule {
     value: string
 
@@ -12,11 +15,15 @@ class Determiner extends Rule {
         this.value = value
     }
 
-    static isDeterminer (token: Token) {
+    /**
+     * Determines if a token is a determiner by checking if it exists in the dictionary.
+     * @param token A string token.
+     */
+    static isDeterminer (token: Token): boolean {
         return determiners.indexOf(<DeterminerValue>token) > -1
     }
 
-    static isDeterminerInstance (token: Token) {
+    static isDeterminerInstance (token: Token): boolean {
         return token instanceof Determiner
     }
 }

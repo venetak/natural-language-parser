@@ -3,16 +3,23 @@ import { prepositions } from '../dictionary/dictionary'
 import Rule from './Rule'
 import { Token } from '../../token'
 
+/**
+ * @class Preposition
+ * These are the production rules for a Preposition.
+ */
 class Preposition extends Rule {
     value: Token
 
     constructor (token: Token) {
         super()
         this.type = 'Preposition'
-        // TODO: include noun phrase?
         this.value = <PrepositionValue>token
     }
 
+    /**
+     * Determines if a token is a preposition by checking if it exists in the dictionary.
+     * @param token A string token that will be checked.
+     */
     static isPreposition (token: Token): boolean {
         return prepositions.indexOf(<PrepositionValue>token) > -1
     }
