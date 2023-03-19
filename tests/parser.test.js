@@ -3,36 +3,28 @@ import Parser from '../index'
 const parser = new Parser()
 const sentence = 'the dog saw a man in the park'
 const expectedAST = JSON.stringify({
-    Sentence: {
-        VerbPhrase: {
-            VerbPhrase: {
-                VerbPhrase: {
-                    NounPhrase: {
-                        determiner: 'the',
-                        NounPhrase: {
-                            noun: 'dog',
-                        },
+    'Sentence': {
+        'VerbPhrase': {
+            'VerbPhrase': {
+                'VerbPhrase': {
+                    'NounPhrase': {
+                        'determiner': 'the',
+                        'noun': 'dog'
                     },
-                    VerbPhrase: {
-                        verb: 'saw',
-                    },
+                    'verb': 'saw'
                 },
-                NounPhrase: {
-                    determiner: 'a',
-                    NounPhrase: {
-                        noun: 'man',
-                    },
-                },
+                'NounPhrase': {
+                    'determiner': 'a',
+                    'noun': 'man'
+                }
             },
-            preposition: 'in',
-            NounPhrase: {
-                determiner: 'the',
-                NounPhrase: {
-                    noun: 'park',
-                },
-            },
-        },
-    },
+            'preposition': 'in',
+            'NounPhrase': {
+                'determiner': 'the',
+                'noun': 'park'
+            }
+        }
+    }
 })
 
 test(`Parses input - ${sentence}`, () => {

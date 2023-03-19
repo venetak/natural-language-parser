@@ -118,6 +118,6 @@ class Parser {
 export default Parser
 
 const parser = new Parser()
-const parsed = parser.parse('the dog')
+const parsed = parser.parse('the dog saw a man in the park')
 console.log(parsed)
 // new Parser().parse('the man plays dog in the movie')

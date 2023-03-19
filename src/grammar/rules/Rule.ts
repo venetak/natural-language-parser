@@ -8,7 +8,6 @@ type Variant = {
  * It should hold shared functionality such as serialize or utility functions like isCorrectLength.
  */
 class Rule {
-    static variants:Variant
     type: string
 
     /**
@@ -41,12 +40,14 @@ class Rule {
      */
     serialize (result = {}): object {
         const properties = Object.getOwnPropertyNames(this)
+        properties.splice(properties.indexOf('type'), 1)
+
         const length = properties.length
-        const firstProp = properties[0]
+        const [firstProp] = properties
         let currentInstance = {}
 
         // If the property is a terminal symbol - flatten the object
-        if (length !== 1 || length === 1 && !this[firstProp].value) {
+        if (length !== 1 || (length === 1 && !this[firstProp].value)) {
             result[this.type] = currentInstance
         } else {
             result = currentInstance
@@ -54,8 +55,6 @@ class Rule {
 
         // recursively go through all properties
         for (const property of properties) {
-            if (property === 'type') continue
-
             const propertyInstance = this[property]
             if (propertyInstance.value) {
                 currentInstance[property] = propertyInstance.value
