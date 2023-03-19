@@ -6,6 +6,18 @@ import { Token } from '../../token'
 import Verb from './Verb'
 import Noun from './Noun'
 
+/**
+ * @class VerbPhraseRule
+ * These are the production rules of VerbPhrase. Possible values are:
+ * <Verb>
+ * <Verb>        <NounPhrase>
+ * <NounPhrase>  <Verb>
+ * <VerbPhrase>  <NounPhrase>
+ * <NounPhrase>  <VerbPhrase>
+ * <Verb>        <NounPhrase>   <Preposition>
+ * <VerbPhrase>  <NounPhrase>   <Preposition>
+ * <VerbPhrase>  <Preposition>  <NounPhrase>
+ */
 class VerbPhraseRule extends Rule {
     preposition: Token
     verb: Token
@@ -15,6 +27,7 @@ class VerbPhraseRule extends Rule {
         super()
         this.type = 'VerbPhrase'
 
+        // set preposition, verb and noun members
         for (const token of tokens) {
             if (Preposition.isPrepositionInstance(token)) this.preposition = token
             if (Verb.isVerbInstance(token) || VerbPhraseRule.isVerbPhraseInstance(token)) this.verb = token
@@ -26,6 +39,10 @@ class VerbPhraseRule extends Rule {
         return token instanceof VerbPhraseRule
     }
 
+    /**
+     * Checks if an array of tokens can form a Verb Phrase.
+     * @param tokens The array of tokens that will be checked.
+     */
     static isVerbPhrase (tokens: Token[]): boolean {
         const tokensLen = tokens.length
         if (!this.isCorrectLength(tokensLen, 0, 3)) return false

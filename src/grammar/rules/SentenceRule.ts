@@ -3,6 +3,12 @@ import NounPhraseRule from './NounPhraseRule'
 import Rule from './Rule'
 import VerbPhraseRule from './VerbPhraseRule'
 
+/**
+ * @class SentenceRule
+ * These are the production rules for a Sentence. It can be
+ * <VerbPhrase> <NounPhrase> or
+ * <NounPhrase> <VerbPhrase>
+ */
 class SentenceRule extends Rule {
     verbPhrase: Token
     subject: Token
@@ -17,14 +23,16 @@ class SentenceRule extends Rule {
         }
     }
 
-    static isSentence (tokens: Token[]) {
+    /**
+     * Checks if an array of tokens can form a sentence.
+     * @param tokens An array of tokens that will be checked.
+     */
+    static isSentence (tokens: Token[]): boolean {
         const tokensLength = tokens.length
         if (!this.isCorrectLength(tokensLength, 0, 2)) return false
         const [tokenA, tokenB] = tokens
         
         if (tokensLength === 1) return VerbPhraseRule.isVerbPhraseInstance(tokenA)
-        // return (VerbPhraseRule.isVerbPhraseInstance(tokenA) && Subject.isSubjectInstance(tokenB)) ||
-        //        (VerbPhraseRule.isVerbPhraseInstance(tokenB) && Subject.isSubjectInstance(tokenA))
         return (VerbPhraseRule.isVerbPhraseInstance(tokenA) && NounPhraseRule.isNounPhraseInstance(tokenB)) ||
                (VerbPhraseRule.isVerbPhraseInstance(tokenB) && NounPhraseRule.isNounPhraseInstance(tokenA))
     }
