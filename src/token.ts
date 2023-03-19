@@ -5,9 +5,8 @@ import VerbPhraseRule from './grammar/rules/VerbPhraseRule'
 import Noun from './grammar/rules/Noun'
 import Verb from './grammar/rules/Verb'
 import Determiner from './grammar/rules/Determiner'
-import Subject from './grammar/rules/Subject'
 
-declare type Token = string | Noun | NounPhraseRule | Preposition | SentenceRule | VerbPhraseRule | Verb | Determiner | Subject
+declare type Token = string | Noun | NounPhraseRule | Preposition | SentenceRule | VerbPhraseRule | Verb | Determiner
 
 export {
     Token,
