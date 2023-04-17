@@ -20,7 +20,7 @@ class Verb extends Rule {
      * @param token The token that will be checked.
      */
     static isVerb (token: Token) {
-        return verbs.indexOf(<VerbValue>token) > -1
+        return verbs.indexOf(<string>token) > -1
     }
 
     static isVerbInstance (token: Token) {

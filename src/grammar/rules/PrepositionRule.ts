@@ -13,7 +13,7 @@ class Preposition extends Rule {
     constructor (token: Token) {
         super()
         this.type = 'Preposition'
-        this.value = <PrepositionValue>token
+        this.value = <string>token
     }
 
     /**
@@ -21,7 +21,7 @@ class Preposition extends Rule {
      * @param token A string token that will be checked.
      */
     static isPreposition (token: Token): boolean {
-        return prepositions.indexOf(<PrepositionValue>token) > -1
+        return prepositions.indexOf(<string>token) > -1
     }
 
     static isPrepositionInstance (token: Token): boolean {

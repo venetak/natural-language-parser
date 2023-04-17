@@ -20,7 +20,7 @@ class Noun extends Rule {
      * @param token A string token.
      */
     static isNoun (token: Token): boolean {
-        return nouns.indexOf(<NounValue>token) > -1
+        return nouns.indexOf(<string>token) > -1
     }
 
     static isNounInstance (token: Token): boolean {

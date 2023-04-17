@@ -1,9 +1,14 @@
-/// <reference path="./dictionary.d.ts" />
-const nouns: NounValue[] = ['dog', 'man', 'park', 'button', 'input', 'element', 'class', 'value', 'id', 'attr', 'movie']
-const verbs: VerbValue[] = ['saw', 'click', 'type', 'select', 'focus', 'submit', 'is', 'has', 'have', 'should', 'include', 'plays']
-const determiners: DeterminerValue[] = ['a', 'an', 'the']
-const conjunctions: ConjunctionValue[] = ['not', 'and']
-const prepositions: PrepositionValue[] = ['be', 'on', 'in', 'to']
+// check for config file
+// check for default location
+// export build-in dictionary
+
+import {
+    nouns,
+    verbs,
+    conjunctions,
+    prepositions,
+    determiners,
+} from './default'
 
 export {
     nouns,
@@ -12,3 +17,4 @@ export {
     prepositions,
     determiners,
 }
+

@@ -20,7 +20,7 @@ class Determiner extends Rule {
      * @param token A string token.
      */
     static isDeterminer (token: Token): boolean {
-        return determiners.indexOf(<DeterminerValue>token) > -1
+        return determiners.indexOf(<string>token) > -1
     }
 
     static isDeterminerInstance (token: Token): boolean {
