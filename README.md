@@ -1,11 +1,11 @@
 # Natural Language Parser in Typescript
 [![Run Tests](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/venetak/natural-language-parser/actions/workflows/run-tests.yml)
 
-The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) from a sentence in English. You ca use the generated abstract syntax tree to analyze the semantics of the sentence and used them as input for a natural language interpreter.
+The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) from a sentence in English. You ca use the generated abstract syntax tree to analyze the semantics of the sentence and use them as an input for a natural language interpreter.
 
 # Structure
 
-The language grammar rules is defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - it in [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation is an Object Oriented approach using TypeScript classes.
+The language grammar rules are defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - it is in [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation is an Object Oriented approach using TypeScript classes.
 
 # Usage
 ## Setup
@@ -13,48 +13,66 @@ The language grammar rules is defined in [grammar/BNF.txt](https://github.com/ve
 Install using npm:
 `npm i natural-language-parser`
 
-Import using CommonJS:
 ```js
+// import using CommonJS:
 const Parser = require('natural-language-parser').default
-```
-
-Create an instance:
-```js
+// create an instance:
 const parser = new Parser()
+const parsed = parser.parse('the dog is in the park') // will create a Rule instance
 ```
 
 ## JavaScript API
 
-Once you've instantiated the parser you can call the parse function:
+### parserInstance.parse()
+The parse function creates a Rule instance that contains all matched sentence parts as properties:
 ```js
-const parsed = parser.parse('the dog is in the park') // will create a Rule instance
+const parsed = parser.parse('the dog is in the park')
 ```
-
+ouputs an object with the following struncture:
+```js
+SentenceRule {
+  type: 'Sentence',
+  verbPhrase: VerbPhraseRule {
+    type: 'VerbPhrase',
+    verb: VerbPhraseRule {
+      type: 'VerbPhrase',
+      noun: [NounPhraseRule],
+      verb: [VerbPhraseRule]
+    },
+    preposition: [Preposition],
+    noun: NounPhraseRule {
+      type: 'NounPhrase',
+      determiner: [Determiner],
+      noun: [NounPhraseRule]
+    }
+  }
+}
+```
+### parsed.toHumanReadableJSON()
 Use the `toHumanReadableJSON` function to create a JSON:
 ```js
 const parsed = parser.parse('the dog is in the park')
 console.log(parsed.toHumanReadableJSON())
 ```
-
-This will log:
+outpus a JSON object with simplified structure:
 ```json
 {
-    "Sentence": {
-        "VerbPhrase": {
-            "VerbPhrase": {
-                "NounPhrase": {
-                    "determiner": "the",
-                    "noun": "dog"
-                },
-                "verb": "is"
-            },
-            "preposition": "in",
-            "NounPhrase": {
-                "determiner": "the",
-                "noun": "park"
-            }
-        }
+  "Sentence": {
+    "VerbPhrase": {
+      "VerbPhrase": {
+        "NounPhrase": {
+          "determiner": "the",
+          "noun": "dog"
+        },
+        "verb": "is"
+      },
+      "preposition": "in",
+      "NounPhrase": {
+        "determiner": "the",
+        "noun": "park"
+      }
     }
+  }
 }
 ```
 
