@@ -2,9 +2,6 @@ import Rule from './Rule'
 import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 
-console.log('----------------------------------------------------------------------------')
-console.log(dictionary)
-console.log('----------------------------------------------------------------------------')
 const nouns = dictionary.nouns
 
 /**

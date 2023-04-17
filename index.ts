@@ -117,8 +117,8 @@ class Parser {
 
 export default Parser
 
-const parser = new Parser()
+// const parser = new Parser()
 // const parsed = parser.parse('the dog saw a man in the park')
-const parsed = parser.parse('default-car default-drive default-in default-the road')
-console.log(parsed.toHumanReadableJSON())
+// const parsed = parser.parse('default-car default-drive default-in default-the road')
+// console.log(parsed.toHumanReadableJSON())
 // new Parser().parse('the man plays dog in the movie')
