@@ -110,8 +110,8 @@ class Parser {
      * @param productionItems The array of production items; the result of the parse.
      */
     format (productionItems) {
-        if (!productionItems.length) return console.error(`No production items found. Failed to parse phrase: `)
-        return <Rule>productionItems[0].toJSON()
+        if (!productionItems.length) return console.error(`No production items found. Failed to parse phrase.`)
+        return <Rule>(productionItems[0]).toHumanReadableJSON()
     }
 }
 

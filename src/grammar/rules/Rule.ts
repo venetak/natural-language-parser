@@ -17,14 +17,7 @@ class Rule {
      * @param max The upper limit.
      */
     static isCorrectLength (tokensLength: Number, min, max): boolean {
-        return (tokensLength <= min || tokensLength > max) ? false: true
-    }
-
-    /**
-     * A wrapper function for serialize allowing the serialized data to be parsed to JSON.
-     */
-    toJSON (): string {
-        return JSON.stringify(this.serialize())
+        return (tokensLength <= min || tokensLength > max) ? false : true
     }
 
     /**
@@ -38,7 +31,7 @@ class Rule {
      * @param result The parsed input - a hierarchical structure of the input, separated into
      * own entities, part of the grammar - Sentence: { VerbPhrase: {...}, NounPhrase: {...} }
      */
-    serialize (result = {}): object {
+    toHumanReadableObject (result = {}): object {
         const properties = Object.getOwnPropertyNames(this)
         properties.splice(properties.indexOf('type'), 1)
 
@@ -62,11 +55,25 @@ class Rule {
             }
 
             if (propertyInstance.type) {
-                result[this.type] = currentInstance = {...currentInstance, ...propertyInstance.serialize({})}
+                result[this.type] = currentInstance = { ...currentInstance, ...propertyInstance.toHumanReadableObject({}) }
             }
         }
 
         return result
+    }
+
+    /**
+     * Create a JSON object of the rule
+     */
+    toJSON (): string {
+        return JSON.stringify(this)
+    }
+
+    /**
+     * Create a JSON of the flattened object of the rule's own properties.
+     */
+    toHumanReadableJSON (): string {
+        return JSON.stringify(this.toHumanReadableObject())
     }
 }
 
