@@ -31,7 +31,7 @@ const requiredProps = [
  * @param dictionary The dictionary object that is going to be validated.
  * @param filePath The path to the dictionary file - used for logging purposes only.
  */
-function isValid (dictionary, filePath): boolean {
+function isValid (dictionary: object, filePath: string): boolean {
     let isValid = true
 
     for (const prop of requiredProps) {
@@ -56,7 +56,7 @@ function isValid (dictionary, filePath): boolean {
  * @param filePath
  * @param next a function that will be called if the file is not valid.
  */
-function loadFromFile (filePath, next): Function | object {
+function loadFromFile (filePath: string, next: Function): Function | object {
     const file = require(filePath)
     if (!isValid(file, filePath)) return next()
 
@@ -70,7 +70,7 @@ function loadFromFile (filePath, next): Function | object {
  * dictionary descriptions - arrays of strings.
  * @param stack Array of functions.
  */
-function load (stack): object {
+function load (stack: Function[]): object {
     let current = 0
 
     const next = () => {
@@ -86,7 +86,7 @@ function load (stack): object {
  * If there is no config file or no dictionaryPath is specified - continue to the next load function.
  * @param next The next callback that will be called if there is no usable config.
  */
-function loadFromConfig (next): Function | object {
+function loadFromConfig (next: Function): Function | object {
     const configFilePath = path.join(process.cwd(), CONFIG_FILE)
     const hasConfigFille = fs.existsSync(configFilePath)
 
@@ -105,7 +105,7 @@ function loadFromConfig (next): Function | object {
  * If the file does not contain a usable dictionary call the next load function.
  * @param next The next callback that will be called in case the local file cannot be used.
  */
-function loadLocalDictionary (next): Function | object {
+function loadLocalDictionary (next: Function): Function | object {
     const dictionaryFilePath = path.join(process.cwd(), LOCAL_DICTIONARY_FILE)
     const hasDictionaryFille = fs.existsSync(dictionaryFilePath)
 
