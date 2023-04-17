@@ -1,6 +1,8 @@
 import Rule from './Rule'
-import { verbs } from '../dictionary/dictionary'
+import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
+
+const verbs = dictionary.verbs
 
 /**
  * @class Verb

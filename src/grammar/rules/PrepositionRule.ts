@@ -1,7 +1,9 @@
 import NounPhraseRule from './NounPhraseRule'
-import { prepositions } from '../dictionary/dictionary'
+import dictionary from '../dictionary/dictionary'
 import Rule from './Rule'
 import { Token } from '../../token'
+
+const prepositions = dictionary.prepositions
 
 /**
  * @class Preposition

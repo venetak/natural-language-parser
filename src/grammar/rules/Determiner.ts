@@ -1,6 +1,8 @@
-import { determiners } from '../dictionary/dictionary'
+import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Rule from './Rule'
+
+const determiners = dictionary.determiners
 
 /**
  * @class Determiner

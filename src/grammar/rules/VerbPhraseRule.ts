@@ -1,10 +1,12 @@
 import Rule from './Rule'
 import NounPhraseRule from './NounPhraseRule'
 import Preposition from './PrepositionRule'
-import { verbs } from '../dictionary/dictionary'
+import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Verb from './Verb'
 import Noun from './Noun'
+
+const verbs = dictionary.verbs
 
 /**
  * @class VerbPhraseRule
