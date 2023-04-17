@@ -9,22 +9,22 @@ const expectedFlattenedAST = JSON.stringify({
                 'VerbPhrase': {
                     'NounPhrase': {
                         'determiner': 'the',
-                        'noun': 'dog'
+                        'noun': 'dog',
                     },
-                    'verb': 'saw'
+                    'verb': 'saw',
                 },
                 'NounPhrase': {
                     'determiner': 'a',
-                    'noun': 'man'
-                }
+                    'noun': 'man',
+                },
             },
             'preposition': 'in',
             'NounPhrase': {
                 'determiner': 'the',
-                'noun': 'park'
-            }
-        }
-    }
+                'noun': 'park',
+            },
+        },
+    },
 })
 
 test(`Parses input and formats to flattened JSON - ${sentence}`, () => {

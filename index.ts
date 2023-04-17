@@ -27,7 +27,7 @@ class Parser {
      * a verb "read" must be constituted with a Verb before it could become a VerbPhrase.
      * @param token The token that will be checked
      */
-    isTerminalSymbol(token: Token): Token | undefined {
+    isTerminalSymbol (token: Token): Token | undefined {
         if (Determiner.isDeterminer(token)) return new Determiner(<string>token)
         if (Noun.isNoun(token)) return new Noun(<string>token)
         if (Verb.isVerb(token)) return new Verb(<string>token)
@@ -39,7 +39,7 @@ class Parser {
      * @param tokens The tokens that will be checked.
      * @param stack The stack containing the tokenized text and the production items.
      */
-    isNonTerminalSymbol(tokens: Token[], stack: Stack):Token | undefined {
+    isNonTerminalSymbol (tokens: Token[], stack: Stack):Token | undefined {
         if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
         if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
         if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
@@ -64,7 +64,7 @@ class Parser {
      * grammar production rule - A -> ab; if the stack contains ab, it can be reduced to A.
      * @param stack The stack containing the tokenized text and the production items.
      */
-    checkForProduction(stack) {
+    checkForProduction (stack) {
         const stackLength = stack.items.length
         const beginning = 0
         let i = beginning
@@ -118,6 +118,7 @@ class Parser {
 export default Parser
 
 const parser = new Parser()
-const parsed = parser.parse('the dog saw a man in the park')
-console.log(parsed)
+// const parsed = parser.parse('the dog saw a man in the park')
+const parsed = parser.parse('default-car default-drive default-in default-the road')
+console.log(parsed.toHumanReadableJSON())
 // new Parser().parse('the man plays dog in the movie')
