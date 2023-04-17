@@ -63,13 +63,6 @@ class Rule {
     }
 
     /**
-     * Create a JSON object of the rule
-     */
-    toJSON (): string {
-        return JSON.stringify(this)
-    }
-
-    /**
      * Create a JSON of the flattened object of the rule's own properties.
      */
     toHumanReadableJSON (): string {

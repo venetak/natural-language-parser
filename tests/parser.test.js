@@ -2,7 +2,7 @@ import Parser from '../index'
 
 const parser = new Parser()
 const sentence = 'the dog saw a man in the park'
-const expectedAST = JSON.stringify({
+const expectedFlattenedAST = JSON.stringify({
     'Sentence': {
         'VerbPhrase': {
             'VerbPhrase': {
@@ -27,7 +27,7 @@ const expectedAST = JSON.stringify({
     }
 })
 
-test(`Parses input - ${sentence}`, () => {
-    const ast = parser.parse(sentence)
-    expect(ast).toBe(expectedAST)
+test(`Parses input and formats to flattened JSON - ${sentence}`, () => {
+    const ast = parser.parse(sentence).toHumanReadableJSON()
+    expect(ast).toBe(expectedFlattenedAST)
 })

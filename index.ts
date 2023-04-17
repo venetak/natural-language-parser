@@ -111,7 +111,7 @@ class Parser {
      */
     format (productionItems) {
         if (!productionItems.length) return console.error(`No production items found. Failed to parse phrase.`)
-        return <Rule>(productionItems[0]).toHumanReadableJSON()
+        return productionItems[0]
     }
 }
 
