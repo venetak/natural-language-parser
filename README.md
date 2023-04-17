@@ -5,7 +5,7 @@ The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abs
 
 # Structure
 
-The language grammar rules is defined in [`grammar/BNF.txt`](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - it in [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation is an Object Oriented approach using TypeScript classes.
+The language grammar rules is defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - it in [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation is an Object Oriented approach using TypeScript classes.
 
 # Usage
 ## Setup
@@ -58,7 +58,7 @@ This will log:
 }
 ```
 
-## Configuration
+# Configuration
 
 The parser needs a dictionary in order to be able to recognize different words as verbs, nouns. prepositions etc. There is a build in dictionary that is packaged with the parser. It supports the most common English **verbs**, **nouns**, **prepositions**, **determiners** and **conjunctions**.
 
@@ -89,7 +89,5 @@ module.exports = {
     dictionaryPath: 'some-folder/dictionary-custom.js'
 }
 ```
-
-
 
 # How it Works
