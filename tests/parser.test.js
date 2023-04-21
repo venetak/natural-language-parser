@@ -1,4 +1,4 @@
-import Parser from '../index'
+import Parser from '../parser'
 
 const parser = new Parser()
 const sentence = 'the dog saw a man in the park'
