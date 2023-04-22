@@ -1,4 +1,3 @@
-import SentenceRule from './src/grammar/rules/SentenceRule'
 import Noun from './src/grammar/rules/Noun'
 import NounPhraseRule from './src/grammar/rules/NounPhraseRule'
 import Verb from './src/grammar/rules/Verb'
@@ -42,7 +41,6 @@ class Parser {
     isNonTerminalSymbol (tokens: Token[], stack: Stack):Token | undefined {
         if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
         if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
-        if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
     }
 
     /**

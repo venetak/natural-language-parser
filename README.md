@@ -28,23 +28,20 @@ The parse function creates a Rule instance that contains all matched sentence pa
 ```js
 const parsed = parser.parse('the dog is in the park')
 ```
-ouputs an object with the following struncture:
+outputs an object with the following structure:
 ```js
-SentenceRule {
-  type: 'Sentence',
-  verbPhrase: VerbPhraseRule {
+verbPhrase: VerbPhraseRule {
+  type: 'VerbPhrase',
+  verb: VerbPhraseRule {
     type: 'VerbPhrase',
-    verb: VerbPhraseRule {
-      type: 'VerbPhrase',
-      noun: [NounPhraseRule],
-      verb: [VerbPhraseRule]
-    },
-    preposition: [Preposition],
-    noun: NounPhraseRule {
-      type: 'NounPhrase',
-      determiner: [Determiner],
-      noun: [NounPhraseRule]
-    }
+    noun: [NounPhraseRule],
+    verb: [VerbPhraseRule]
+  },
+  preposition: [Preposition],
+  noun: NounPhraseRule {
+    type: 'NounPhrase',
+    determiner: [Determiner],
+    noun: [NounPhraseRule]
   }
 }
 ```
@@ -57,20 +54,18 @@ console.log(parsed.toHumanReadableJSON())
 outpus a JSON object with simplified structure:
 ```json
 {
-  "Sentence": {
+  "VerbPhrase": {
     "VerbPhrase": {
-      "VerbPhrase": {
-        "NounPhrase": {
-          "determiner": "the",
-          "noun": "dog"
-        },
-        "verb": "is"
-      },
-      "preposition": "in",
       "NounPhrase": {
         "determiner": "the",
-        "noun": "park"
-      }
+        "noun": "dog"
+      },
+      "verb": "is"
+    },
+    "preposition": "in",
+    "NounPhrase": {
+      "determiner": "the",
+      "noun": "park"
     }
   }
 }
