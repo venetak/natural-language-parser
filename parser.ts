@@ -10,6 +10,8 @@ import { Stack } from './src/stack'
 
 import { Tokenizer } from './src/tokenizer'
 import Rule from './src/grammar/rules/Rule'
+import ModalVerb from './src/grammar/rules/ModalVerb'
+import ModalVerbPhrase from './src/grammar/rules/ModalVerbPhrase'
 
 /**
  * @class Parser
@@ -31,6 +33,7 @@ class Parser {
         if (Noun.isNoun(token)) return new Noun(<string>token)
         if (Verb.isVerb(token)) return new Verb(<string>token)
         if (Preposition.isPreposition(token)) return new Preposition(token)
+        if (ModalVerb.isModalVerb(token)) return new ModalVerb(<string>token)
     }
 
     /**
@@ -41,6 +44,7 @@ class Parser {
     isNonTerminalSymbol (tokens: Token[], stack: Stack):Token | undefined {
         if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
         if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
+        if (ModalVerbPhrase.isModalVerbPhrase(tokens)) return new ModalVerbPhrase(tokens)
     }
 
     /**

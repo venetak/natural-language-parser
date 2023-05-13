@@ -5,6 +5,7 @@ import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Verb from './Verb'
 import Noun from './Noun'
+import ModalVerbPhrase from './ModalVerbPhrase'
 
 const verbs = dictionary.verbs
 
@@ -24,6 +25,7 @@ class VerbPhraseRule extends Rule {
     preposition: Token
     verb: Token
     noun: Token
+    modalVerb: Token
 
     constructor (tokens: Token[]) {
         super()
@@ -34,6 +36,7 @@ class VerbPhraseRule extends Rule {
             if (Preposition.isPrepositionInstance(token)) this.preposition = token
             if (Verb.isVerbInstance(token) || VerbPhraseRule.isVerbPhraseInstance(token)) this.verb = token
             if (Noun.isNounInstance(token) || NounPhraseRule.isNounPhraseInstance(token)) this.noun = token
+            if (ModalVerbPhrase.isModalVerbPhraseInstance(token)) this.modalVerb = token
         }
     }
 
@@ -53,15 +56,15 @@ class VerbPhraseRule extends Rule {
         if (tokensLen === 1) return Verb.isVerbInstance(tokenA)
 
         if (tokensLen === 2) {
-            return (Verb.isVerbInstance(tokenA))       && NounPhraseRule.isNounPhraseInstance(tokenB)        ||
-                   (Verb.isVerbInstance(tokenB))       && NounPhraseRule.isNounPhraseInstance(tokenA)        ||
-                   (this.isVerbPhraseInstance(tokenA)) && NounPhraseRule.isNounPhraseInstance(tokenB)        ||
-                   (this.isVerbPhraseInstance(tokenB)) && NounPhraseRule.isNounPhraseInstance(tokenA)
+            return (this.isVerbPhraseInstance(tokenA)) && NounPhraseRule.isNounPhraseInstance(tokenB)                 ||
+                   (this.isVerbPhraseInstance(tokenB)) && NounPhraseRule.isNounPhraseInstance(tokenA)                 ||
+                   (ModalVerbPhrase.isModalVerbPhraseInstance(tokenA)) && NounPhraseRule.isNounPhraseInstance(tokenB) ||
+                   (ModalVerbPhrase.isModalVerbPhraseInstance(tokenB)) && NounPhraseRule.isNounPhraseInstance(tokenA)
         }
 
-        return (Verb.isVerbInstance(tokenA)       && NounPhraseRule.isNounPhraseInstance(tokenB) && Preposition.isPrepositionInstance(tokenC)) ||
-               (this.isVerbPhraseInstance(tokenA) && NounPhraseRule.isNounPhraseInstance(tokenB) && Preposition.isPrepositionInstance(tokenC)) ||
-               (this.isVerbPhraseInstance(tokenA) && Preposition.isPrepositionInstance(tokenB)   && NounPhraseRule.isNounPhraseInstance(tokenC))
+        return (this.isVerbPhraseInstance(tokenA) && NounPhraseRule.isNounPhraseInstance(tokenB) && Preposition.isPrepositionInstance(tokenC))     ||
+               (this.isVerbPhraseInstance(tokenA) && Preposition.isPrepositionInstance(tokenB)   && NounPhraseRule.isNounPhraseInstance(tokenC))   ||
+               (ModalVerbPhrase.isModalVerbPhraseInstance(tokenA) && Preposition.isPrepositionInstance(tokenB)  && NounPhraseRule.isNounPhraseInstance(tokenB))
     }
 }
 

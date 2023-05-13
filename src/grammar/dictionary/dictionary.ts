@@ -1,6 +1,7 @@
 type Dictionary = {
     nouns: string[],
     verbs: string[],
+    modalVerbs: string[],
     conjunctions: string[],
     prepositions: string[],
     determiners: string[],
@@ -12,6 +13,7 @@ import {
     conjunctions,
     prepositions,
     determiners,
+    modalVerbs,
 } from './default'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -23,7 +25,8 @@ const requiredProps = [
     'verbs',
     'conjunctions',
     'prepositions',
-    'determiners'
+    'determiners',
+    'modalVerbs'
 ]
 
 /**
@@ -125,6 +128,7 @@ function loadDefault (): object {
         conjunctions,
         prepositions,
         determiners,
+        modalVerbs,
     }
 }
 

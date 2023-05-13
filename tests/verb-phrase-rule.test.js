@@ -17,16 +17,6 @@ test(`VerbPhraseRule should not recognize VerbPhraseRule with wrong number of to
     expect(VerbPhraseRule.isVerbPhrase([prepositionInstance, verbPhraseInstance, prepositionInstance, prepositionInstance])).toBe(false)
 })
 
-// tests isVerbPhrase([<Verb>, <NounPhraseRule>])
-test(`VerbPhraseRule should recognize VerbPhraseRule with Verb and NounPhraseRule`, () => {
-    expect(VerbPhraseRule.isVerbPhrase([verbInstance, nounPhraseInstance])).toBe(true)
-})
-
-// tests isVerbPhrase([<NounPhraseRule>, <Verb>])
-test(`VerbPhraseRule should recognize VerbPhraseRule with NounPhraseRule and Verb`, () => {
-    expect(VerbPhraseRule.isVerbPhrase([nounPhraseInstance, verbInstance])).toBe(true)
-})
-
 // tests isVerbPhrase([<VerbPhraseRule>, <NounPhraseRule>])
 test(`VerbPhraseRule should recognize VerbPhraseRule with VerbPhraseRule and NounPhraseRule`, () => {
     expect(VerbPhraseRule.isVerbPhrase([verbPhraseInstance, nounPhraseInstance])).toBe(true)
@@ -35,11 +25,6 @@ test(`VerbPhraseRule should recognize VerbPhraseRule with VerbPhraseRule and Nou
 // tests isVerbPhrase([<NounPhraseRule>, <VerbPhraseRule>])
 test(`VerbPhraseRule should recognize VerbPhraseRule with NounPhraseRule and VerbPhraseRule`, () => {
     expect(VerbPhraseRule.isVerbPhrase([nounPhraseInstance, verbPhraseInstance])).toBe(true)
-})
-
-// tests isVerbPhrase([Verb, <NounPhraseRule>, <Preposition>])
-test(`VerbPhraseRule should recognize VerbPhraseRule with Verb, NounPhraseRule and Preposition`, () => {
-    expect(VerbPhraseRule.isVerbPhrase([verbInstance, nounPhraseInstance, prepositionInstance])).toBe(true)
 })
 
 // tests isVerbPhrase([VerbPhraseRule, <NounPhraseRule>, <Preposition>])
