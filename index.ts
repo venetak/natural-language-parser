@@ -9,10 +9,7 @@ yargs(process.argv.slice(2))
     'parse [sentence]',
     'parse a sentence',
     function (yargs) {
-      return yargs.option('sentence', {
-        alias: 's',
-        describe: 'the text you wish to parse',
-      })
+      return yargs.option('sentence')
     },
     function (argv) {
         const sentence = argv.sentence
@@ -20,6 +17,7 @@ yargs(process.argv.slice(2))
 
         try {
           const ast = instance.parse(sentence)
+
           if (ast && ast.toHumanReadableJSON) console.log(`AST readable:`, ast.toHumanReadableJSON())
           if (ast && !ast.toHumanReadableJSON) console.log(`AST:`, ast)
         } catch (error) {
@@ -27,6 +25,12 @@ yargs(process.argv.slice(2))
         }
     }
   )
+  .describe('s', 'The sentence you want to parse')
+  .example('nlp-cli parse "the dog should be in the park"')
+  .alias('s', 'sentence')
+  .alias('h', 'help')
+  .alias('v', 'version')
+  .demandCommand(1, 'You need to specify a command - nlp-cli parse [sentence]')
   .demandOption('sentence', 'Please pass a text to parse!')
   .help()
   .argv
