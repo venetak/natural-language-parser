@@ -1,47 +1,29 @@
 const grammar = {
-  "<sentence>": [
-    "<noun_phrase> <verb_phrase>",
-    "<verb_phrase> <noun_phrase>",
-  ],
+  // terminals
+  "<determiner>": [ "the", "a" ],
+  "<conjunction>": [ "not", "and" ],
+  "<preposition>": [ "in", "on" ],
+  "<verb>": [ "walk", "read" ],
+  "<modal_verb>": [ "should", "shall" ],
+  "<noun>": [ "book", "park" ],
+
+   // non terminals
   "<noun_phrase>": [
-    "<common_noun>",
-    "<determiner> <common_noun>",
+    "<noun>",
+    "<determiner> <noun>",
+    "<determiner> <noun_phrase>"
   ],
   "<verb_phrase>": [
     "<verb>",
-    "<verb> <noun_phrase>",
-    "<verb> <noun_phrase> <preposition_phrase>"
+    "<verb_phrase> <noun_phrase>",
+    "<modal_verb_phrase> <noun_phrase>",
+    "<noun_phrase> <modal_verb_phrase>",
+    "<verb_phrase> <noun_phrase> <preposition>"
+    "<verb_phrase> <preposition> <noun_phrase>"
+    "<modal_verb_phrase> <preposition> <noun_phrase>"
   ],
-  "<preposition_phrase>": [
-    "<preposition> <noun_phrase>"
-  ],
-  "<conjunction>": [
-    "and",
-    "or",
-    "but"
-  ],
-  "<determiner>": [
-    "the",
-    "a",
-    "an"
-  ],
-  "<common_noun>": [
-    "cat",
-    "book",
-    "man",
-    "city"
-  ],
-  "<verb>": [
-    "sees",
-    "reads",
-    "likes",
-    "eats"
-  ],
-  "<preposition>": [
-    "in",
-    "on",
-    "at",
-    "with",
-    "from"
+  "<modal_verb_phrase>": [
+    "<modal_verb> <verb_phrase>"
+    "<modal_verb> <conjunction> <verb_phrase>"
   ],
 };

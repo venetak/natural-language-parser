@@ -149,3 +149,21 @@ It separates the input into tokens - this process is called tokenization. Then r
 
 For more information regarding natural language parsing refer to [Natural Language Processing with Python
 ](https://www.nltk.org/book/ch08.html).
+
+## Limitations & Known Issues
+
+This is an experimental project. As such it has limitations and issues:
+
+- It does not fully support the English language. The supported grammar is described in Backus–Naur form in the [BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) file.
+- It will not produce a full tree if a token is not recognized by the dictionary
+- Compound-complex sentences are not yet supported; they will not be parsed to a single tree, instead they'll be into separate nodes:
+'the balrog sleeps in Moria and should not pass' will be parsed to [ModalVerbPhrase, Conjunction, VerbPhrase] and only the first in the stack will be displayed as a result:
+```json
+{
+    "ModalVerbPhrase": {
+        "modalVerb": "should",
+        "conjunction": "not",
+        "verb": "pass"
+    }
+}
+```
