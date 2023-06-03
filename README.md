@@ -3,12 +3,11 @@
 
 The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) from a sentence in English. You ca use the generated abstract syntax tree to analyze the semantics of the sentence and use them as an input for a natural language interpreter.
 
-# Structure
+## Structure
 
 The rules that describe the language grammar are defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - using the [Backus–Naur metasyntax](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation utilizes OOP principals using TypeScript classes.
 
-# Usage
-## Setup
+## Usage
 
 Install using npm:
 ```
@@ -22,7 +21,7 @@ const parser = new Parser()
 const parsed = parser.parse('the dog is in the park') // will create a Rule instance
 ```
 
-## JavaScript API
+### JavaScript API
 
 Import the parser using [CommonJS](https://nodejs.org/docs/latest/api/modules.html):
 
@@ -30,7 +29,7 @@ Import the parser using [CommonJS](https://nodejs.org/docs/latest/api/modules.ht
 const Parser = require('natural-language-parser').default
 ```
 
-### parserInstance.parse()
+#### parserInstance.parse()
 The parse function creates a Rule instance that contains all matched sentence parts as properties:
 ```js
 const parsed = parser.parse('the dog is in the park')
@@ -52,7 +51,7 @@ verbPhrase: VerbPhraseRule {
   }
 }
 ```
-### parsed.toHumanReadableJSON()
+#### parsed.toHumanReadableJSON()
 Use the `toHumanReadableJSON` function to create a JSON:
 ```js
 const parsed = parser.parse('the dog is in the park')
@@ -78,7 +77,7 @@ outputs a JSON object with simplified structure:
 }
 ```
 
-## CLI
+### CLI
 
 Use the `nlp-cli` command to parse a sentence:
 
@@ -104,11 +103,11 @@ will produce:
 }
 ```
 
-# Configuration
+## Configuration
 
 The parser needs a dictionary in order to be able to recognize different words as verbs, nouns. prepositions etc. There is a build in dictionary that is packaged with the parser. It supports the most common English **verbs**, **nouns**, **prepositions**, **determiners** and **conjunctions**.
 
-## A dictionary.js file
+### A dictionary.js file
 If you need to specify a custom dictionary you can create a `dictionary.js` file located in the **root of your project**:
 
 node_modules/
@@ -129,7 +128,7 @@ module.exports = {
 ```
 <mark>If some of the above listed word classes is missing the parser will use the built in dictionary.</mark>
 
-## Custom dictionary file using a config
+### Custom dictionary file
 If you want to use a dictionary from a custom-named file that is not in the root of the repo - you can use a `nlpconfig.js` file. The config file must be located in the root of the repo and it must have the **dictionaryPath** property:
 
 ```js
@@ -138,7 +137,7 @@ module.exports = {
 }
 ```
 
-# How it Works
+## How it Works
 
 The parser accepts text written in English, breaks it down to its building components and builds a syntax tree representing the hierarchical structure of the sentence.
 
