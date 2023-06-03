@@ -162,7 +162,7 @@ This is an experimental project. As such it has limitations and issues:
  nlp-cli parse -s "the balrog should not pass and sleeps in Moria"
 ```
 will output: 
-```json
+```
 AST: {
     "conjunction": "and",
     "verbPhraseA": {
@@ -178,7 +178,7 @@ AST: {
             }
         }
     },
-    "verbPhraseC": {
+    "verbPhraseB": {
         "VerbPhrase": {
             "verb": "sleeps",
             "preposition": "in",

@@ -5,17 +5,17 @@ import Conjunction from './Conjunction'
 
 class SentenceRule extends Rule {
     verbPhraseA: Token
-    verbPhraseC: Token
+    verbPhraseB: Token
     conjunction: Token
 
     constructor (tokens: Token[]) {
         super()
         this.type = 'Sentence'
-        const [tokenA, tokenB, tokenC] = tokens
+        const [verbPhraseA, conjunction, verbPhraseB] = tokens
 
-        if (VerbPhraseRule.isVerbPhraseInstance(tokenA)) this.verbPhraseA = tokenA
-        if (VerbPhraseRule.isVerbPhraseInstance(tokenC)) this.verbPhraseC = tokenC
-        this.conjunction = tokenB
+        if (VerbPhraseRule.isVerbPhraseInstance(verbPhraseA)) this.verbPhraseA = verbPhraseA
+        if (VerbPhraseRule.isVerbPhraseInstance(verbPhraseB)) this.verbPhraseB = verbPhraseB
+        this.conjunction = conjunction
     }
 
     static isSentenceRuleInstance (token: Token) {
@@ -39,7 +39,7 @@ class SentenceRule extends Rule {
         return JSON.stringify({
             conjunction: (<Conjunction>(this.conjunction)).value,
             verbPhraseA: (<VerbPhraseRule>(this.verbPhraseA)).toHumanReadableObject(),
-            verbPhraseC: (<VerbPhraseRule>(this.verbPhraseC)).toHumanReadableObject(),
+            verbPhraseB: (<VerbPhraseRule>(this.verbPhraseB)).toHumanReadableObject(),
         })
     }
 }
