@@ -1,6 +1,6 @@
 import Verb from '../src/grammar/rules/Verb'
 
-const token = 'click'
+const token = 'sleeps'
 const verbInstance = new Verb(token)
 
 // tests new Verb(<Token>)
