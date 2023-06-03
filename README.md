@@ -139,7 +139,7 @@ module.exports = {
 
 ## How it Works
 
-The parser accepts text written in English, breaks it down to its building components and builds a syntax tree representing the hierarchical structure of the sentence.
+The parser accepts an input in English, breaks it down to its building components and builds a syntax tree representing the hierarchical structure of a sentence.
 
 ![syntax tree](https://github.com/venetak/natural-language-parser/blob/main/img/tree.PNG?raw=true)
 
