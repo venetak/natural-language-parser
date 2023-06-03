@@ -68,8 +68,8 @@ function loadFromFile (filePath: string, next: Function): Function | object {
 
 /**
  * Execute a stack of functions by calling the first one and passing a next callback.
- * The currently executed function can either return a result or call next until the 
- * stack reaches the end and calls the last next. The result should be an object of 
+ * The currently executed function can either return a result or call next until the
+ * stack reaches the end and calls the last next. The result should be an object of
  * dictionary descriptions - arrays of strings.
  * @param stack Array of functions.
  */
