@@ -6,8 +6,8 @@ import Parser from './parser'
 yargs(process.argv.slice(2))
   .scriptName('nlp-cli')
   .command(
-    'parse [sentence]',
-    'parse a sentence',
+    'parse',
+    'Parse a sentence in English',
     function (yargs) {
       return yargs.option('sentence')
     },
@@ -26,11 +26,11 @@ yargs(process.argv.slice(2))
     }
   )
   .describe('s', 'The sentence you want to parse')
-  .example('nlp-cli parse "the dog should be in the park"')
+  .example('nlp-cli parse -s "the dog walks in the park"')
   .alias('s', 'sentence')
   .alias('h', 'help')
   .alias('v', 'version')
-  .demandCommand(1, 'You need to specify a command - nlp-cli parse [sentence]')
+  .demandCommand(1, 'You need to specify a command - nlp-cli parse <sentence>')
   .demandOption('sentence', 'Please pass a text to parse!')
   .help()
   .argv

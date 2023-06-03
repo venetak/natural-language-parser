@@ -5,7 +5,7 @@ The purpose of this tool is to create an [AST](https://en.wikipedia.org/wiki/Abs
 
 # Structure
 
-The language grammar rules are defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - it is in [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation is an Object Oriented approach using TypeScript classes.
+The rules that describe the language grammar are defined in [grammar/BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) - using the [Backus–Naur metasyntax](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form). The actual implementation utilizes OOP principals using TypeScript classes.
 
 # Usage
 ## Setup
@@ -51,7 +51,7 @@ Use the `toHumanReadableJSON` function to create a JSON:
 const parsed = parser.parse('the dog is in the park')
 console.log(parsed.toHumanReadableJSON())
 ```
-outpus a JSON object with simplified structure:
+outputs a JSON object with simplified structure:
 ```json
 {
   "VerbPhrase": {
@@ -68,6 +68,32 @@ outpus a JSON object with simplified structure:
       "noun": "park"
     }
   }
+}
+```
+
+## CLI
+
+Use the `nlp-cli` command to parse a sentence:
+
+![cli usage](https://github.com/venetak/natural-language-parser/blob/main/img/cli.PNG?raw=true)
+
+` nlp-cli parse -s "the balrog sleeps in Moria"`
+
+will produce:
+
+```json
+{
+    "VerbPhrase": {
+        "VerbPhrase": {
+            "NounPhrase": {
+                "determiner": "the",
+                "noun": "balrog"
+            },
+            "verb": "sleeps"
+        },
+        "preposition": "in",
+        "noun": "Moria"
+    }
 }
 ```
 

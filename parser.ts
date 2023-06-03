@@ -12,6 +12,7 @@ import { Tokenizer } from './src/tokenizer'
 import Rule from './src/grammar/rules/Rule'
 import ModalVerb from './src/grammar/rules/ModalVerb'
 import ModalVerbPhrase from './src/grammar/rules/ModalVerbPhrase'
+import Conjunction from './src/grammar/rules/Conjunction'
 
 /**
  * @class Parser
@@ -30,6 +31,7 @@ class Parser {
      */
     isTerminalSymbol (token: Token): Token | undefined {
         if (Determiner.isDeterminer(token)) return new Determiner(<string>token)
+        if (Conjunction.isConjunction(token)) return new Conjunction(<string>token)
         if (Noun.isNoun(token)) return new Noun(<string>token)
         if (Verb.isVerb(token)) return new Verb(<string>token)
         if (Preposition.isPreposition(token)) return new Preposition(token)
