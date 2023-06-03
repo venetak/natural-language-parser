@@ -16,7 +16,7 @@ const verbPhraseInstanceB = new VerbPhraseRule([new VerbPhraseRule([new Verb('sl
 
 const conjunctionInstance = new Conjunction('and')
 
-const expectedJSON = JSON.stringify({'conjunction':'and','verbPhraseA':{'VerbPhrase':{'NounPhrase':{'determiner':'the','noun':'balrog'},'ModalVerbPhrase':{'modalVerb':'should','conjunction':'not','verb':'pass'}}},'verbPhraseC':{'VerbPhrase':{'verb':'sleeps','preposition':'in','noun':'Moria'}}})
+const expectedJSON = JSON.stringify({'conjunction':'and','verbPhraseA':{'VerbPhrase':{'NounPhrase':{'determiner':'the','noun':'balrog'},'ModalVerbPhrase':{'modalVerb':'should','conjunction':'not','verb':'pass'}}},'verbPhraseB':{'VerbPhrase':{'verb':'sleeps','preposition':'in','noun':'Moria'}}})
 
 
 // tests new Sentence([<VerbPhraseRule>, <Conjunction>, <VerbPhraseRule>])
@@ -24,7 +24,7 @@ test(`SentenceRule should create Sentence instance`, () => {
     const instance = new SentenceRule ([verbPhraseInstanceA, conjunctionInstance, verbPhraseInstanceB])
 
     expect(instance.verbPhraseA).toBe(verbPhraseInstanceA)
-    expect(instance.verbPhraseC).toBe(verbPhraseInstanceB)
+    expect(instance.verbPhraseB).toBe(verbPhraseInstanceB)
     expect(instance.conjunction).toBe(conjunctionInstance)
 })
 
