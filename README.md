@@ -156,14 +156,43 @@ This is an experimental project. As such it has limitations and issues:
 
 - It does not fully support the English language. The supported grammar is described in Backus–Naur form in the [BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) file.
 - It will not produce a full tree if a token is not recognized by the dictionary
-- Compound-complex sentences are not yet supported; they will not be parsed to a single tree, instead they'll be into separate nodes:
-'the balrog sleeps in Moria and should not pass' will be parsed to [ModalVerbPhrase, Conjunction, VerbPhrase] and only the first in the stack will be displayed as a result:
+- Compound-complex sentences are not fully supported; currently only a sentence that consists of [<verb_phrase> <conjunction> <verb_phrase>] will be parsed successfully:
+
+```
+ nlp-cli parse -s "the balrog should not pass and sleeps in Moria"
+```
+will output: 
 ```json
-{
-    "ModalVerbPhrase": {
-        "modalVerb": "should",
-        "conjunction": "not",
-        "verb": "pass"
+AST: {
+    "conjunction": "and",
+    "verbPhraseA": {
+        "VerbPhrase": {
+            "NounPhrase": {
+                "determiner": "the",
+                "noun": "balrog"
+            },
+            "ModalVerbPhrase": {
+                "modalVerb": "should",
+                "conjunction": "not",
+                "verb": "pass"
+            }
+        }
+    },
+    "verbPhraseC": {
+        "VerbPhrase": {
+            "verb": "sleeps",
+            "preposition": "in",
+            "noun": "Moria"
+        }
     }
 }
+```
+
+Everything else will output a single Rule instance - the last token that was reduced:
+```
+nlp-cli parse -s "the balrog should not pass and sleeps in Moria and should not sleep"
+```
+will output:
+```
+AST: sleep
 ```

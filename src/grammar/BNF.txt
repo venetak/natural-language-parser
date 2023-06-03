@@ -8,6 +8,9 @@ const grammar = {
   "<noun>": [ "book", "park" ],
 
    // non terminals
+  "<sentence>": [
+    "<verb_phrase> <conjunction> <verb_phrase>",
+  ],
   "<noun_phrase>": [
     "<noun>",
     "<determiner> <noun>",

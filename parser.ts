@@ -13,6 +13,7 @@ import Rule from './src/grammar/rules/Rule'
 import ModalVerb from './src/grammar/rules/ModalVerb'
 import ModalVerbPhrase from './src/grammar/rules/ModalVerbPhrase'
 import Conjunction from './src/grammar/rules/Conjunction'
+import SentenceRule from './src/grammar/rules/SentenceRule'
 
 /**
  * @class Parser
@@ -47,6 +48,7 @@ class Parser {
         if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
         if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
         if (ModalVerbPhrase.isModalVerbPhrase(tokens)) return new ModalVerbPhrase(tokens)
+        if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
     }
 
     /**
