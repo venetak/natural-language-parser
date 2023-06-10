@@ -4,6 +4,7 @@ const modalVerbs: string[] = ['shall', 'should', 'can', 'could', 'will', 'would'
 const determiners: string[] = ['a', 'an', 'the']
 const conjunctions: string[] = ['not', 'and']
 const prepositions: string[] = ['be', 'on', 'in', 'to']
+const adverbs: string[] = ['visible', 'opened', 'stopped']
 
 export {
     nouns,
@@ -12,4 +13,5 @@ export {
     prepositions,
     determiners,
     modalVerbs,
+    adverbs,
 }

@@ -1,20 +1,20 @@
 import Rule from './Rule'
 import { Token } from '../../token'
-import VerbPhraseRule from './VerbPhraseRule'
+import Predicate from './Predicate'
 import Conjunction from './Conjunction'
 
 class SentenceRule extends Rule {
-    verbPhraseA: Token
-    verbPhraseB: Token
+    predicateA: Token
+    predicateB: Token
     conjunction: Token
 
     constructor (tokens: Token[]) {
         super()
         this.type = 'Sentence'
-        const [verbPhraseA, conjunction, verbPhraseB] = tokens
+        const [predicateA, conjunction, predicateB] = tokens
 
-        if (VerbPhraseRule.isVerbPhraseInstance(verbPhraseA)) this.verbPhraseA = verbPhraseA
-        if (VerbPhraseRule.isVerbPhraseInstance(verbPhraseB)) this.verbPhraseB = verbPhraseB
+        if (Predicate.isPredicateInstance(predicateA)) this.predicateA = predicateA
+        if (Predicate.isPredicateInstance(predicateB)) this.predicateB = predicateB
         this.conjunction = conjunction
     }
 
@@ -32,14 +32,14 @@ class SentenceRule extends Rule {
 
         const [tokenA, tokenB, tokenC] = tokens
 
-        return VerbPhraseRule.isVerbPhraseInstance(tokenA) && Conjunction.isConjunctionInstance(tokenB) && VerbPhraseRule.isVerbPhraseInstance(tokenC)
+        return Predicate.isPredicateInstance(tokenA) && Conjunction.isConjunctionInstance(tokenB) && Predicate.isPredicateInstance(tokenC)
     }
 
     toHumanReadableJSON (): string {
         return JSON.stringify({
             conjunction: (<Conjunction>(this.conjunction)).value,
-            verbPhraseA: (<VerbPhraseRule>(this.verbPhraseA)).toHumanReadableObject(),
-            verbPhraseB: (<VerbPhraseRule>(this.verbPhraseB)).toHumanReadableObject(),
+            predicateA: (<Predicate>(this.predicateA)).toHumanReadableObject(),
+            predicateB: (<Predicate>(this.predicateB)).toHumanReadableObject(),
         })
     }
 }

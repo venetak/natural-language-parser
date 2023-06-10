@@ -14,6 +14,8 @@ import ModalVerb from './src/grammar/rules/ModalVerb'
 import ModalVerbPhrase from './src/grammar/rules/ModalVerbPhrase'
 import Conjunction from './src/grammar/rules/Conjunction'
 import SentenceRule from './src/grammar/rules/SentenceRule'
+import Predicate from './src/grammar/rules/Predicate'
+import Adverb from './src/grammar/rules/Adverb'
 
 /**
  * @class Parser
@@ -37,6 +39,7 @@ class Parser {
         if (Verb.isVerb(token)) return new Verb(<string>token)
         if (Preposition.isPreposition(token)) return new Preposition(token)
         if (ModalVerb.isModalVerb(token)) return new ModalVerb(<string>token)
+        if (Adverb.isAdverb(token)) return new Adverb(<string>token)
     }
 
     /**
@@ -48,6 +51,7 @@ class Parser {
         if (NounPhraseRule.isNounPhrase(tokens)) return new NounPhraseRule(tokens)
         if (VerbPhraseRule.isVerbPhrase(tokens)) return new VerbPhraseRule(tokens)
         if (ModalVerbPhrase.isModalVerbPhrase(tokens)) return new ModalVerbPhrase(tokens)
+        if (Predicate.isPredicate(tokens)) return new Predicate(tokens)
         if (!stack.tokens.length && SentenceRule.isSentence(tokens)) return new SentenceRule(tokens)
     }
 

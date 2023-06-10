@@ -5,6 +5,7 @@ type Dictionary = {
     conjunctions: string[],
     prepositions: string[],
     determiners: string[],
+    adverbs: string[],
 }
 
 import {
@@ -14,6 +15,7 @@ import {
     prepositions,
     determiners,
     modalVerbs,
+    adverbs,
 } from './default'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -26,7 +28,8 @@ const requiredProps = [
     'conjunctions',
     'prepositions',
     'determiners',
-    'modalVerbs'
+    'modalVerbs',
+    'adverbs'
 ]
 
 /**
@@ -59,7 +62,7 @@ function isValid (dictionary: object, filePath: string): boolean {
  * @param filePath
  * @param next a function that will be called if the file is not valid.
  */
-function loadFromFile (filePath: string, next: Function): Function | object {
+function loadFromFile (filePath: string, next: Function): Function | object { 
     const file = require(filePath)
     if (!isValid(file, filePath)) return next()
 
@@ -129,6 +132,7 @@ function loadDefault (): object {
         prepositions,
         determiners,
         modalVerbs,
+        adverbs,
     }
 }
 
