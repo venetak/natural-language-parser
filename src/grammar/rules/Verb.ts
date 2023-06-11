@@ -2,7 +2,7 @@ import Rule from './Rule'
 import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 
-const verbs = dictionary.verbs
+const verbs = dictionary.verbs.map(word => word.toLowerCase())
 
 /**
  * @class Verb
@@ -22,7 +22,7 @@ class Verb extends Rule {
      * @param token The token that will be checked.
      */
     static isVerb (token: Token) {
-        return verbs.indexOf(<string>token) > -1
+        return verbs.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isVerbInstance (token: Token) {

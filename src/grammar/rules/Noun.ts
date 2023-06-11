@@ -2,7 +2,7 @@ import Rule from './Rule'
 import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 
-const nouns = dictionary.nouns
+const nouns = dictionary.nouns.map(word => word.toLowerCase())
 
 /**
  * @class Noun
@@ -22,7 +22,7 @@ class Noun extends Rule {
      * @param token A string token.
      */
     static isNoun (token: Token): boolean {
-        return nouns.indexOf(<string>token) > -1
+        return nouns.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isNounInstance (token: Token): boolean {

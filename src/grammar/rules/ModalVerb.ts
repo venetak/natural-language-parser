@@ -2,7 +2,7 @@ import Rule from './Rule'
 import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 
-const modalVerbs = dictionary.modalVerbs
+const modalVerbs = dictionary.modalVerbs.map(word => word.toLowerCase())
 
 /**
  * @class Verb
@@ -22,7 +22,7 @@ class ModalVerb extends Rule {
      * @param token The token that will be checked.
      */
     static isModalVerb (token: Token) {
-        return modalVerbs.indexOf(<string>token) > -1
+        return modalVerbs.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isModalVerbInstance (token: Token) {

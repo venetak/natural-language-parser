@@ -127,6 +127,7 @@ module.exports = {
 }
 ```
 <mark>If some of the above listed word classes is missing the parser will use the built in dictionary.</mark>
+The dictionary is case insensitive.
 
 ### Custom dictionary file
 If you want to use a dictionary from a custom-named file that is not in the root of the repo - you can use a `nlpconfig.js` file. The config file must be located in the root of the repo and it must have the **dictionaryPath** property:

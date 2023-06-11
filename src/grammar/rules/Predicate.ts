@@ -31,8 +31,7 @@ class Predicate extends Rule {
         if (!this.isCorrectLength(tokensLen, 1, 2)) return false
         const [tokenA, tokenB] = tokens
 
-        return VerbPhraseRule.isVerbPhraseInstance(tokenA) && Adverb.isAdverbInstance(tokenB) ||
-               Predicate.isPredicateInstance(tokenA) && Adverb.isAdverbInstance(tokenB)
+        return VerbPhraseRule.isVerbPhraseInstance(tokenA) && Adverb.isAdverbInstance(tokenB)
     }
 
     static isPredicateInstance (token: Token) {

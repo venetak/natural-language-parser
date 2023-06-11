@@ -1,9 +1,8 @@
-import NounPhraseRule from './NounPhraseRule'
 import dictionary from '../dictionary/dictionary'
 import Rule from './Rule'
 import { Token } from '../../token'
 
-const prepositions = dictionary.prepositions
+const prepositions = dictionary.prepositions.map(word => word.toLowerCase())
 
 /**
  * @class Preposition
@@ -23,7 +22,7 @@ class Preposition extends Rule {
      * @param token A string token that will be checked.
      */
     static isPreposition (token: Token): boolean {
-        return prepositions.indexOf(<string>token) > -1
+        return prepositions.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isPrepositionInstance (token: Token): boolean {

@@ -2,7 +2,7 @@ import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Rule from './Rule'
 
-const conjunction = dictionary.conjunctions
+const conjunction = dictionary.conjunctions.map(word => word.toLowerCase())
 
 /**
  * @class Conjunction
@@ -22,7 +22,7 @@ class Conjunction extends Rule {
      * @param token A string token.
      */
     static isConjunction (token: Token): boolean {
-        return conjunction.indexOf(<string>token) > -1
+        return conjunction.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isConjunctionInstance (token: Token): boolean {

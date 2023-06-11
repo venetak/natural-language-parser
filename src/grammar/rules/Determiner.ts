@@ -2,8 +2,7 @@ import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Rule from './Rule'
 
-const determiners = dictionary.determiners
-
+const determiners = dictionary.determiners.map(word => word.toLowerCase())
 /**
  * @class Determiner
  * These are the production rules for determiner.
@@ -22,7 +21,7 @@ class Determiner extends Rule {
      * @param token A string token.
      */
     static isDeterminer (token: Token): boolean {
-        return determiners.indexOf(<string>token) > -1
+        return determiners.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isDeterminerInstance (token: Token): boolean {

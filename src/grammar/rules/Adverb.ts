@@ -2,7 +2,7 @@ import dictionary from '../dictionary/dictionary'
 import { Token } from '../../token'
 import Rule from './Rule'
 
-const adverb = dictionary.adverbs
+const adverb = dictionary.adverbs.map(word => word.toLowerCase())
 
 /**
  * @class Adverb
@@ -22,7 +22,7 @@ class Adverb extends Rule {
      * @param token A string token.
      */
     static isAdverb (token: Token): boolean {
-        return adverb.indexOf(<string>token) > -1
+        return adverb.indexOf((<string>token).toLowerCase()) > -1
     }
 
     static isAdverbInstance (token: Token): boolean {
