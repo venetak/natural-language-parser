@@ -14,7 +14,7 @@ class Predicate extends Rule {
     constructor (tokens: Token[]) {
         super()
         this.type = 'Predicate'
-        
+
         for (const token of tokens) {
             if (VerbPhraseRule.isVerbPhraseInstance(token)) this.verbPhrase = <VerbPhraseRule>token
             if (Adverb.isAdverbInstance(token)) this.adverb = <Adverb>token
@@ -31,7 +31,6 @@ class Predicate extends Rule {
         if (!this.isCorrectLength(tokensLen, 1, 2)) return false
         const [tokenA, tokenB] = tokens
 
-        if (tokensLen === 1) return VerbPhraseRule.isVerbPhraseInstance(tokenA)
         return VerbPhraseRule.isVerbPhraseInstance(tokenA) && Adverb.isAdverbInstance(tokenB) ||
                Predicate.isPredicateInstance(tokenA) && Adverb.isAdverbInstance(tokenB)
     }
