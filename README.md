@@ -14,7 +14,7 @@ Install using npm:
 npm i natural-language-parser
 ```
 
-Import using [CommonJS](https://nodejs.org/docs/latest/api/modules.html) and create a instance:
+Import using [CommonJS](https://nodejs.org/docs/latest/api/modules.html) and create an instance:
 ```js
 const Parser = require('natural-language-parser').default
 const parser = new Parser()
@@ -89,17 +89,17 @@ will produce:
 
 ```json
 {
+  "VerbPhrase": {
     "VerbPhrase": {
-        "VerbPhrase": {
-            "NounPhrase": {
-                "determiner": "the",
-                "noun": "balrog"
-            },
-            "verb": "sleeps"
-        },
-        "preposition": "in",
-        "noun": "Moria"
-    }
+      "NounPhrase": {
+        "determiner": "the",
+        "noun": "balrog"
+      },
+      "verb": "sleeps"
+    },
+    "preposition": "in",
+    "noun": "Moria"
+  }
 }
 ```
 
@@ -161,30 +161,30 @@ This is an experimental project. As such it has limitations and issues:
 ```
  nlp-cli parse -s "the balrog should not pass and sleeps in Moria"
 ```
-will output: 
-```
+will output:
+```json
 AST: {
-    "conjunction": "and",
-    "verbPhraseA": {
-        "VerbPhrase": {
-            "NounPhrase": {
-                "determiner": "the",
-                "noun": "balrog"
-            },
-            "ModalVerbPhrase": {
-                "modalVerb": "should",
-                "conjunction": "not",
-                "verb": "pass"
-            }
-        }
-    },
-    "verbPhraseB": {
-        "VerbPhrase": {
-            "verb": "sleeps",
-            "preposition": "in",
-            "noun": "Moria"
-        }
+  "conjunction": "and",
+  "verbPhraseA": {
+    "VerbPhrase": {
+      "NounPhrase": {
+        "determiner": "the",
+        "noun": "balrog"
+      },
+      "ModalVerbPhrase": {
+        "modalVerb": "should",
+        "conjunction": "not",
+        "verb": "pass"
+      }
     }
+  },
+  "verbPhraseB": {
+    "VerbPhrase": {
+      "verb": "sleeps",
+      "preposition": "in",
+      "noun": "Moria"
+    }
+  }
 }
 ```
 

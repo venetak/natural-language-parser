@@ -6,6 +6,7 @@ const grammar = {
   "<verb>": [ "walk", "read" ],
   "<modal_verb>": [ "should", "shall" ],
   "<noun>": [ "book", "park" ],
+  "<adverb>": ["stopped", "quickly"],
 
    // non terminals
   "<sentence>": [
@@ -29,4 +30,7 @@ const grammar = {
     "<modal_verb> <verb_phrase>"
     "<modal_verb> <conjunction> <verb_phrase>"
   ],
+  "<predicate>": [
+    <verb_phrase> <adverb>
+  ]
 };
