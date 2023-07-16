@@ -20,6 +20,7 @@ const grammar = {
   "<verb_phrase>": [
     "<verb>",
     "<verb_phrase> <noun_phrase>",
+    "<noun_phrase> <verb_phrase>",
     "<modal_verb_phrase> <noun_phrase>",
     "<noun_phrase> <modal_verb_phrase>",
     "<verb_phrase> <noun_phrase> <preposition>"
