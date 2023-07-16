@@ -105,10 +105,10 @@ will produce:
 
 ## Configuration
 
-The parser needs a dictionary in order to be able to recognize different words as verbs, nouns. prepositions etc. There is a build in dictionary that is packaged with the parser. It supports the most common English **verbs**, **nouns**, **prepositions**, **determiners** and **conjunctions**.
+The parser needs a dictionary in order to be able to recognize different words as verbs, nouns. prepositions etc. There is a built-in dictionary in the parser. It supports the most common English **verbs**, **nouns**, **prepositions**, **determiners** and **conjunctions**.
 
 ### A dictionary.js file
-If you need to specify a custom dictionary you can create a `dictionary.js` file located in the **root of your project**:
+If you need to specify a custom dictionary - you can create a `dictionary.js` file located in the **root of your project**:
 
 node_modules/
 index.js
@@ -126,8 +126,8 @@ module.exports = {
     modalVerbs: ['should'],
 }
 ```
-<mark>If some of the above listed word classes is missing the parser will use the built in dictionary.</mark>
-The dictionary is case insensitive.
+<mark>If some of the above listed word classes is missing the parser will use the built-in dictionary.</mark>
+The dictionary is not case insensitive.
 
 ### Custom dictionary file
 If you want to use a dictionary from a custom-named file that is not in the root of the repo - you can use a `nlpconfig.js` file. The config file must be located in the root of the repo and it must have the **dictionaryPath** property:
@@ -157,7 +157,7 @@ This is an experimental project. As such it has limitations and issues:
 
 - It does not fully support the English language. The supported grammar is described in Backus–Naur form in the [BNF.txt](https://github.com/venetak/natural-language-parser/blob/main/src/grammar/BNF.txt) file.
 - It will not produce a full tree if a token is not recognized by the dictionary
-- Compound-complex sentences are not fully supported; currently only a sentence that consists of [<verb_phrase> <conjunction> <verb_phrase>] will be parsed successfully:
+- Compound-complex sentences are not fully supported; currently only a sentence that consists of [`<verb_phrase>` `<conjunction>` `<verb_phrase>`] will be parsed successfully:
 
 ```
  nlp-cli parse -s "the balrog should not pass and sleeps in Moria"
